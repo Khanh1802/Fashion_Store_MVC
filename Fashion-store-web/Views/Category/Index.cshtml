@@ -1,0 +1,84 @@
+﻿@using Fashion_store_web.Dtos.Categories;
+@model List<CategoryDto>
+<div class="Container">
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>
+                Category List
+            </h2>
+        </div>
+
+        <div class="col-3">
+            <a asp-controller="Category" asp-action="Create" class="btn">
+                <i class="bi bi-plus-circle"></i>  Create New Category
+            </a>
+        </div>
+
+        @*  <div class="col-3">
+        <a asp-controller="Category" asp-action="Update" class="btn">
+        <i class="bi bi-plus-circle"></i>  Update Category
+        </a>
+        </div>*@
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Category name
+                </th>
+                <th>
+                    Parent id
+                </th>
+                <th>
+                    Order
+                </th>
+                <th>
+                    Slug
+                </th>
+                <th>
+                    CreationTime
+                </th>
+                <th>
+                    LastModificationTime
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.ParentId
+                    </td>
+                    <td>
+                        @item.Order
+                    </td>
+                    <td>
+                        @item.Slug
+                    </td>
+                    <td>
+                        @item.CreationTime
+                    </td>
+                    <td>
+                        @item.LastModificationTime
+                    </td>
+                    <td>
+                        <a asp-controller="Category" asp-action="Update" class="btn" asp-route-id="@item.Id">
+                            <i class="bi bi-plus-circle">Update</i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
