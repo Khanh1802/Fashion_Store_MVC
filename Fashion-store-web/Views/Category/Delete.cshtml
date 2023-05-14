@@ -4,18 +4,17 @@
 
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Update Category</h2>
+            <h2 class="text-primary">Delete Category</h2>
             <hr />
         </div>
 
         @*<div class="mb-3">
-            <input asp-for="Id" type="text" class="form-control" hidden />
+        <input asp-for="Id" type="text" class="form-control" hidden />
         </div>*@
 
         <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" type="text" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -26,18 +25,11 @@
         <div class="mb-3">
             <label asp-for="Slug"></label>
             <input asp-for="Slug" type="text" class="form-control" />
-            <span asp-validation-for="Slug" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Status"></label>
-            <input asp-for="Status" type="text" class="form-control" />
-            <span asp-validation-for="Status" class="text-danger"></span>
         </div>
 
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary form-control">Update</button>
+                <button type="submit" class="btn btn-primary form-control">Delete</button>
             </div>
 
             <div class="col-6">

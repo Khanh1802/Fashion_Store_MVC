@@ -61,27 +61,17 @@ namespace Fashion_store_web.Controllers
             return RedirectToAction("Index");
         }
 
-
-        [HttpPost]
-        public async Task<IActionResult> Update(UpdateCategoryDto item)
-        {
-            if (ModelState.IsValid)
-            {
-                await _categoryService.UpdateAsync(item);
-            }
-            return RedirectToAction("Index");
-        }
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Delete()
         {
             //Lay id
             if (!Request.RouteValues.TryGetValue("id", out var categoryId))
             {
                 return RedirectToAction("Index");
             }
-            var id = Guid.TryParse(Convert.ToString(categoryId), out Guid result);
-            if (id)
+            var IsValidId = Guid.TryParse(Convert.ToString(categoryId), out Guid id);
+            if (IsValidId)
             {
-                var category = await _categoryService.GetById(result);
+                var category = await _categoryService.GetById(id);
                 if (category != null)
                 {
                     return View(new UpdateCategoryDto()
@@ -94,6 +84,52 @@ namespace Fashion_store_web.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (ModelState.IsValid)
+            {
+                await _categoryService.DeleteAsync(id);
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        public async Task<IActionResult> Update()
+        {
+            //Lay id
+            if (!Request.RouteValues.TryGetValue("id", out var categoryId))
+            {
+                return RedirectToAction("Index");
+            }
+            var IsValidId = Guid.TryParse(Convert.ToString(categoryId), out Guid id);
+            if (IsValidId)
+            {
+                var category = await _categoryService.GetById(id);
+                if (category != null)
+                {
+                    return View(new UpdateCategoryDto()
+                    {
+                        Id = category.Id,
+                        Name = category.Name,
+                        ParentId = category.ParentId,
+                        Slug = category.Slug
+                    });
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateCategoryDto item)
+        {
+            if (ModelState.IsValid)
+            {
+                await _categoryService.UpdateAsync(item);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

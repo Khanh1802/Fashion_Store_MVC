@@ -77,6 +77,12 @@
                             <i class="bi bi-plus-circle">Update</i>
                         </a>
                     </td>
+                    <td>
+                        @*asp-route-id => lấy id*@
+                        <a asp-controller="Category" asp-action="Delete" class="btn" asp-route-id="@item.Id">
+                            <i class="bi bi-plus-circle">Delete</i>
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>

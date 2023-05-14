@@ -11,6 +11,7 @@
         <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -21,6 +22,7 @@
         <div class="mb-3">
             <label asp-for="Slug"></label>
             <input asp-for="Slug" type="text" class="form-control" />
+            <span asp-validation-for="Slug" class="text-danger"></span>
         </div>
 
         <div class="row">
