@@ -18,10 +18,15 @@ builder.Services.AddHttpClient<ISizeService, SizeService>(opt =>
 {
     opt.BaseAddress = new Uri(builder.Configuration["FashionStore:EndPoint"]);
 });
+builder.Services.AddHttpClient<IProductImageService, ProductImageService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["FashionStore:EndPoint"]);
+});
 
 builder.Services.Configure<OptionsCategory>(builder.Configuration.GetSection("FashionStore:Categories"));
 builder.Services.Configure<OptionsProduct>(builder.Configuration.GetSection("FashionStore:Products"));
 builder.Services.Configure<OptionsSize>(builder.Configuration.GetSection("FashionStore:Sizes"));
+builder.Services.Configure<OptionsProductImage>(builder.Configuration.GetSection("FashionStore:ProductImages"));
 
 var app = builder.Build();
 
