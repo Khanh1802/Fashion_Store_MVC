@@ -35,10 +35,9 @@ namespace Fashion_store_web.Service
 
         public async Task<List<CategoryDto>> GetListAsync()
         {
-            var getAll = await _httpClient.GetAsync($"{_options.GetCategory}");
-            getAll.EnsureSuccessStatusCode();
-            return await getAll.Content.ReadFromJsonAsync<List<CategoryDto>>() ?? new();
-
+            var categories = await _httpClient.GetAsync($"{_options.GetCategory}");
+            categories.EnsureSuccessStatusCode();
+            return await categories.Content.ReadFromJsonAsync<List<CategoryDto>>() ?? new();
         }
 
         public async Task<CategoryDto> UpdateAsync(UpdateCategoryDto category)

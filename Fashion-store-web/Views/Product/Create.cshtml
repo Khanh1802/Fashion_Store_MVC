@@ -1,20 +1,17 @@
 ﻿@using Fashion_store_web.Dtos.Categories;
-@model CategoryDto
+@model CreateCategoryDto
 <form method="post">
 
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Delete Category</h2>
+            <h2 class="text-primary">Create Product</h2>
             <hr />
         </div>
-
-        @*<div class="mb-3">
-        <input asp-for="Id" type="text" class="form-control" hidden />
-        </div>*@
 
         <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
@@ -23,28 +20,14 @@
         </div>
 
         <div class="mb-3">
-            <label asp-for="Order"></label>
-            <input asp-for="Order" type="text" class="form-control" />
-        </div>
-
-        <div class="mb-3">
             <label asp-for="Slug"></label>
             <input asp-for="Slug" type="text" class="form-control" />
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="CreationTime"></label>
-            <input asp-for="CreationTime" type="text" class="form-control" />
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="LastModificationTime"></label>
-            <input asp-for="LastModificationTime" type="text" class="form-control" />
+            <span asp-validation-for="Slug" class="text-danger"></span>
         </div>
 
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-primary form-control">Delete</button>
+                <button type="submit" class="btn btn-primary form-control">Create</button>
             </div>
 
             <div class="col-6">

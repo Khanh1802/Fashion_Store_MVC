@@ -1,10 +1,10 @@
-﻿@using Fashion_store_web.Dtos.Categories;
-@model CategoryDto
+﻿@using Fashion_store_web.Dtos.Sizes;
+@model SizeDto
 <form method="post">
 
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Delete Category</h2>
+            <h2 class="text-primary">Delete Size</h2>
             <hr />
         </div>
 
@@ -15,21 +15,12 @@
         <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="ParentId"></label>
-            <input asp-for="ParentId" type="text" class="form-control" />
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Order"></label>
-            <input asp-for="Order" type="text" class="form-control" />
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Slug"></label>
-            <input asp-for="Slug" type="text" class="form-control" />
+            <label asp-for="Code"></label>
+            <input asp-for="Code" type="text" class="form-control" />
         </div>
 
         <div class="mb-3">
@@ -48,7 +39,7 @@
             </div>
 
             <div class="col-6">
-                <a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                <a asp-controller="Size" asp-action="Index" class="btn btn-outline-secondary border form-control">
                     Back to List
                 </a>
             </div>

@@ -1,0 +1,75 @@
+﻿@using Fashion_store_web.Dtos.Sizes;
+@model List<SizeDto>
+<div class="Container">
+
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>
+                Category List
+            </h2>
+        </div>
+
+        <div class="col-3">
+            <a asp-controller="Size" asp-action="Create" class="btn">
+                <i class="bi bi-plus-circle"></i>  Create New Size
+            </a>
+        </div>
+
+        @*  <div class="col-3">
+        <a asp-controller="Category" asp-action="Update" class="btn">
+        <i class="bi bi-plus-circle"></i>  Update Category
+        </a>
+        </div>*@
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Size name
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    CreationTime
+                </th>
+                <th>
+                    LastModificationTime
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Code
+                    </td>
+                    <td>
+                        @item.CreationTime
+                    </td>
+                    <td>
+                        @item.LastModificationTime
+                    </td>
+                    <td>
+                        <a asp-controller="Size" asp-action="Update" class="btn" asp-route-id="@item.Id">
+                            <i class="bi bi-plus-circle">Update</i>
+                        </a>
+                    </td>
+                    <td>
+                        @*asp-route-id => lấy id*@
+                        <a asp-controller="Size" asp-action="Delete" class="btn" asp-route-id="@item.Id">
+                            <i class="bi bi-plus-circle">Delete</i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

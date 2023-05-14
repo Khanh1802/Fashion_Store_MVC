@@ -15,36 +15,9 @@ namespace Fashion_store_web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            try
-            {
-                var categories = await _categoryService.GetListAsync() ?? new List<CategoryDto>();
-                return View(categories);
-            }
-            catch (Exception)
-            {
-                return View();
-            }
+            var categories = await _categoryService.GetListAsync() ?? new List<CategoryDto>();
+            return View(categories);
         }
-        //public async Task<IActionResult> GetById()
-        //{
-        //    return View();
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> GetById(Guid id)
-        //{
-        //    //Lay id
-        //    if (!Request.RouteValues.TryGetValue("id", out var categoryId))
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    if (ModelState.IsValid)
-        //    {
-        //        var category = await _categoryService.GetById((Guid)categoryId);
-        //    }
-        //    return View("Index");
-        //}
-
 
         public async Task<IActionResult> Create()
         {
@@ -57,8 +30,9 @@ namespace Fashion_store_web.Controllers
             if (ModelState.IsValid)
             {
                 await _categoryService.CreateAsync(item);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View();
         }
 
         public async Task<IActionResult> Delete()
@@ -72,14 +46,17 @@ namespace Fashion_store_web.Controllers
             if (IsValidId)
             {
                 var category = await _categoryService.GetById(id);
-                if (category != null)
+                if (category.Id != Guid.Empty && category.Id != null)
                 {
-                    return View(new UpdateCategoryDto()
+                    return View(new CategoryDto()
                     {
                         Id = category.Id,
                         Name = category.Name,
+                        Order = category.Order,
                         ParentId = category.ParentId,
-                        Slug = category.Slug
+                        Slug = category.Slug,
+                        CreationTime = category.CreationTime,
+                        LastModificationTime = category.LastModificationTime,
                     });
                 }
             }
@@ -108,7 +85,7 @@ namespace Fashion_store_web.Controllers
             if (IsValidId)
             {
                 var category = await _categoryService.GetById(id);
-                if (category != null)
+                if (category.Id != Guid.Empty && category.Id != null)
                 {
                     return View(new UpdateCategoryDto()
                     {
