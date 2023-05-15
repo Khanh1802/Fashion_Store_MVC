@@ -16,9 +16,9 @@ namespace Fashion_store_web.Service
             _options = options.Value;
         }
 
-        public async Task<CategoryDto> CreateAsync(CreateCategoryDto category)
+        public async Task<CategoryDto> CreateAsync(CreateCategoryDto item)
         {
-            var create = await _httpClient.PostAsJsonAsync($"{_options.CreateCategory}", category);
+            var create = await _httpClient.PostAsJsonAsync($"{_options.CreateCategory}", item);
             create.EnsureSuccessStatusCode();
             return (await create.Content.ReadFromJsonAsync<CategoryDto>());
         }
@@ -27,10 +27,6 @@ namespace Fashion_store_web.Service
         {
             var delete = await _httpClient.DeleteAsync($"{_options.DeleteCategory}/{key}");
             delete.EnsureSuccessStatusCode();
-            if (delete is null)
-            {
-                throw new Exception("Delete fail");
-            }
         }
 
         public async Task<List<CategoryDto>> GetListAsync()
@@ -40,15 +36,11 @@ namespace Fashion_store_web.Service
             return await categories.Content.ReadFromJsonAsync<List<CategoryDto>>() ?? new();
         }
 
-        public async Task<CategoryDto> UpdateAsync(UpdateCategoryDto category)
+        public async Task<CategoryDto> UpdateAsync(UpdateCategoryDto item)
         {
-            var update = await _httpClient.PutAsJsonAsync($"{_options.UpdateCategory}/{category.Id}", category);
+            var update = await _httpClient.PutAsJsonAsync($"{_options.UpdateCategory}/{item.Id}", item);
             update.EnsureSuccessStatusCode();
             var data = await update.Content.ReadFromJsonAsync<CategoryDto>();
-            if (data is null)
-            {
-                throw new Exception("Update fail");
-            }
             return data;
         }
 
@@ -56,10 +48,6 @@ namespace Fashion_store_web.Service
         {
             var data = await _httpClient.GetAsync($"{_options.GetById}/{id}");
             data.EnsureSuccessStatusCode();
-            if (data is null) 
-            {
-                throw new Exception("Not found Category by Id");
-            }
             return await data.Content.ReadFromJsonAsync<CategoryDto>() ?? new();
         }
     }
