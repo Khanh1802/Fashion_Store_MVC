@@ -15,7 +15,7 @@ namespace Fashion_store_web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetListAsync() ?? new List<CategoryDto>();
+            var categories = await _categoryService.GetListAsync();
             return View(categories);
         }
 

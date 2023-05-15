@@ -15,19 +15,24 @@ namespace Fashion_store_web.Service
             _options = options.Value;
         }
 
-        public Task<ProductImageDto> CreateAsync(CreateProductImageDto category)
+        public async Task<ProductImageDto> CreateAsync(CreateProductImageDto item)
         {
-            throw new NotImplementedException();
+            var create = await _httpClient.PostAsJsonAsync($"{_options.CreateProductImage}", item);
+            create.EnsureSuccessStatusCode();
+            return await create.Content.ReadFromJsonAsync<ProductImageDto>();
         }
 
-        public Task DeleteAsync(Guid key)
+        public async Task DeleteAsync(Guid key)
         {
-            throw new NotImplementedException();
+            var delete = await _httpClient.DeleteAsync($"{_options.DeleteProductImage}/{key}");
+            delete.EnsureSuccessStatusCode();
         }
 
-        public Task<ProductImageDto> GetById(Guid key)
+        public async Task<ProductImageDto> GetById(Guid key)
         {
-            throw new NotImplementedException();
+            var productImage = await _httpClient.GetAsync($"{_options.GetById}/{key}");
+            productImage.EnsureSuccessStatusCode();
+            return await productImage.Content.ReadFromJsonAsync<ProductImageDto>();
         }
 
         public async Task<List<ProductImageDto>> GetListAsync()
@@ -37,9 +42,11 @@ namespace Fashion_store_web.Service
             return (await productImages.Content.ReadFromJsonAsync<GenericResponse<ProductImageDto>>()).Items;
         }
 
-        public Task<ProductImageDto> UpdateAsync(UpdateProductImageDto category)
+        public async Task<ProductImageDto> UpdateAsync(UpdateProductImageDto item)
         {
-            throw new NotImplementedException();
+            var update = await _httpClient.PutAsJsonAsync($"{_options.UpdateProductImage}/{item.Id}", item);
+            update.EnsureSuccessStatusCode();
+            return await update.Content.ReadFromJsonAsync<ProductImageDto>();
         }
     }
 }

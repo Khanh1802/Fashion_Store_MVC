@@ -14,7 +14,5 @@ namespace Fashion_store_web.Dtos.ProductImage
         public string Description { get; set; }
         [Required]
         public string Slug { get; set; }
-        [Required]
-        public bool IsDefault { get; set; }
     }
 }

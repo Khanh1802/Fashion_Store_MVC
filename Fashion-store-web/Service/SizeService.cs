@@ -26,10 +26,6 @@ namespace Fashion_store_web.Service
         {
             var delete = await _httpClient.DeleteAsync($"{_options.DeleteSize}/{key}");
             delete.EnsureSuccessStatusCode();
-            if (delete is null)
-            {
-                throw new Exception("Delete fail");
-            }
         }
 
         public async Task<SizeDto> GetById(Guid key)
@@ -53,10 +49,6 @@ namespace Fashion_store_web.Service
         {
             var size = await _httpClient.PutAsJsonAsync($"{_options.UpdateSize}/{item.Id}", item);
             size.EnsureSuccessStatusCode();
-            if (size == null)
-            {
-                throw new Exception("Update fail");
-            }
             return await size.Content.ReadFromJsonAsync<SizeDto>();
         }
     }
