@@ -16,28 +16,32 @@
 
         <div class="mb-3">
             <label asp-for="Name"></label>
-            <input asp-for="Name" type="text" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" type="text" class="form-control" />
+            <input asp-for="Name" disabled class="form-control" />
         </div>
 
         <div class="mb-3">
             <label asp-for="ShortName"></label>
-            <input asp-for="ShortName" type="text" class="form-control" />
+            <input asp-for="ShortName" disabled class="form-control" />
         </div>
 
         <div class="mb-3">
             <label asp-for="Description"></label>
-            <input asp-for="Description" type="text" class="form-control" />
+            <input asp-for="Description" disabled class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CreationTime"></label>
+            <input asp-for="CreationTime" disabled class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LastModificationTime"></label>
+            <input asp-for="LastModificationTime" disabled class="form-control" />
         </div>
 
         <div class="mb-3">
             <label asp-for="Slug"></label>
-            <input asp-for="Slug" type="text" class="form-control" />
+            <input asp-for="Slug" disabled class="form-control" />
 
             <div class="row">
                 <div class="col-6">

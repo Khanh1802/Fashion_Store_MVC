@@ -1,17 +1,21 @@
 ﻿using Fashion_store_web.Dtos.Products;
+using Fashion_store_web.Dtos.ProductSizes;
 using Fashion_store_web.Dtos.Sizes;
 using Fashion_store_web.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Fashion_store_web.Controllers
 {
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly ISizeService _sizeService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ISizeService sizeService)
         {
             _productService = productService;
+            _sizeService = sizeService;
         }
 
         public async Task<IActionResult> Index()
@@ -22,9 +26,20 @@ namespace Fashion_store_web.Controllers
 
         public async Task<IActionResult> Create()
         {
-            return View();
+            var sizes = await _sizeService.GetListAsync();
+            var sizeSelectList = sizes.Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.Id.ToString(),
+            }).ToList();
+            return View(new CreateProductDto()
+            {
+                Sizes = new List<CreateProductSizeDto>(),
+                SizeSelectList = sizeSelectList
+            });
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create(CreateProductDto item)
         {
             if (ModelState.IsValid)

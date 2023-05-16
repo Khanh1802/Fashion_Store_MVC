@@ -1,5 +1,5 @@
-﻿@using Fashion_store_web.Dtos.Categories;
-@model CreateCategoryDto
+﻿@using Fashion_store_web.Dtos.Products;
+@model CreateProductDto
 <form method="post">
 
     <div class="border p-3 mt-4">
@@ -9,14 +9,26 @@
         </div>
 
         <div class="mb-3">
+            <label asp-for="CategoryId"></label>
+            <input asp-for="CategoryId" type="text" class="form-control" />
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
             <label asp-for="Name"></label>
             <input asp-for="Name" type="text" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="ParentId"></label>
-            <input asp-for="ParentId" type="text" class="form-control" />
+            <label asp-for="ShortName"></label>
+            <input asp-for="ShortName" type="text" class="form-control" />
+            <span asp-validation-for="ShortName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" type="text" class="form-control" />
         </div>
 
         <div class="mb-3">
@@ -24,8 +36,18 @@
             <input asp-for="Slug" type="text" class="form-control" />
             <span asp-validation-for="Slug" class="text-danger"></span>
         </div>
+        
+        <div>
 
-        <div class="row">
+            <div class="mb-3">
+                <label class="form-lable">Select Size</label>
+                <select class="form-select" asp-items="Model.SizeSelectList">
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">   
             <div class="col-6">
                 <button type="submit" class="btn btn-primary form-control">Create</button>
             </div>

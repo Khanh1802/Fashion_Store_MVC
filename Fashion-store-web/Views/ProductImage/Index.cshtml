@@ -71,13 +71,13 @@
                     </td>
                     <td>
                         <a asp-controller="ProductImage" asp-action="Update" class="btn" asp-route-id="@item.Id">
-                            <i class="bi bi-plus-circle">Update</i>
+                            <i class="bi bi-pencil-square">Update</i>
                         </a>
                     </td>
                     <td>
                         @*asp-route-id => lấy id*@
                         <a asp-controller="ProductImage" asp-action="Delete" class="btn" asp-route-id="@item.Id">
-                            <i class="bi bi-plus-circle">Delete</i>
+                            <i class="bi bi-trash-fill">Delete</i>
                         </a>
                     </td>
                 </tr>

@@ -30,6 +30,7 @@ namespace Fashion_store_web.Controllers
             if (ModelState.IsValid)
             {
                 await _categoryService.CreateAsync(item);
+                TempData["success"] = "Category create success";
                 return RedirectToAction("Index");
             }
             return View();
@@ -69,6 +70,7 @@ namespace Fashion_store_web.Controllers
             if (ModelState.IsValid)
             {
                 await _categoryService.DeleteAsync(id);
+                TempData["success"] = "Category delete successfully";
             }
             return RedirectToAction("Index");
         }
@@ -105,6 +107,7 @@ namespace Fashion_store_web.Controllers
             if (ModelState.IsValid)
             {
                 await _categoryService.UpdateAsync(item);
+                TempData["success"] = "Category update success";
             }
             return RedirectToAction("Index");
         }
